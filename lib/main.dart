@@ -20,13 +20,6 @@ class _MyAppState extends State<MyApp> {
   int upperBound = 5;
   double progress = 0.2;
   Set<int> reachedSteps = <int>{0, 2, 4, 5};
-  final dashImages = [
-    'https://i.pinimg.com/originals/0c/64/c9/0c64c92d97cf2c5f4ce1be7b81537d55.png',
-    'https://freepngimg.com/save/85245-smartphone-mobile-accessories-phone-plus-iphone/868x1740',
-    'https://img.lovepik.com/element/40177/3459.png_1200.png',
-    'https://assets.stickpng.com/thumbs/61d4a0b38b51e20004664d44.png',
-    'https://img.lovepik.com/free-png/20211215/lovepik-smartphone-model-png-image_401660433_wh1200.png',
-  ];
 
   void increaseProgress() {
     if (progress < 1) {
@@ -45,7 +38,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.purple,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.blue,
           accentColor: Colors.deepOrange,
           backgroundColor: Colors.white,
         ),
@@ -56,28 +49,34 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 EasyStepper(
+                  
                   activeStep: activeStep,
                   lineStyle: const LineStyle(
+                    defaultLineColor: Color(0xffEFF6FC),
+                    activeLineColor: Color(0xffEFF6FC),
+                    finishedLineColor: Color(0xff74ABDC),
                     lineLength: 50,
                     lineType: LineType.normal,
                     lineThickness: 3,
-                    lineSpace: 1,
+                    lineSpace: 0,
                     lineWidth: 10,
-                    unreachedLineType: LineType.dashed,
+                    unreachedLineType: LineType.normal,
                   ),
-                  stepShape: StepShape.rRectangle,
+                  stepShape: StepShape.circle,
                   stepBorderRadius: 15,
                   borderThickness: 2,
-                  internalPadding: 10,
                   padding: const EdgeInsetsDirectional.symmetric(
                     horizontal: 30,
                     vertical: 20,
                   ),
-                  stepRadius: 28,
-                  finishedStepBorderColor: Colors.deepOrange,
-                  finishedStepTextColor: Colors.deepOrange,
-                  finishedStepBackgroundColor: Colors.deepOrange,
-                  activeStepIconColor: Colors.deepOrange,
+                  stepRadius: 15,
+                  finishedStepTextColor: Colors.white,
+                  finishedStepBackgroundColor: const Color(0xff74ABDC),
+                  unreachedStepBackgroundColor: const Color(0xffEFF6FC),
+                  unreachedStepBorderType: BorderType.normal,
+                  unreachedStepBorderColor: const Color(0xffEFF6FC),
+                  activeStepBackgroundColor: const Color(0xff005CAF),
+                  activeStepBorderColor: const Color(0xff005CAF),
                   showLoadingAnimation: false,
                   steps: [
                     EasyStep(
@@ -85,12 +84,8 @@ class _MyAppState extends State<MyApp> {
                         borderRadius: BorderRadius.circular(15),
                         child: Opacity(
                           opacity: activeStep >= 0 ? 1 : 0.3,
-                          child: Image.asset('assets/1.png'),
+                          child: const Text('1', style: TextStyle(color: Colors.white),),
                         ),
-                      ),
-                      customTitle: const Text(
-                        'Dash 1',
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     EasyStep(
@@ -98,12 +93,8 @@ class _MyAppState extends State<MyApp> {
                         borderRadius: BorderRadius.circular(15),
                         child: Opacity(
                           opacity: activeStep >= 1 ? 1 : 0.3,
-                          child: Image.asset('assets/2.png'),
+                          child: const Text('2', style: TextStyle(color: Colors.white),),
                         ),
-                      ),
-                      customTitle: const Text(
-                        'Dash 2',
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     EasyStep(
@@ -111,12 +102,8 @@ class _MyAppState extends State<MyApp> {
                         borderRadius: BorderRadius.circular(15),
                         child: Opacity(
                           opacity: activeStep >= 2 ? 1 : 0.3,
-                          child: Image.asset('assets/3.png'),
+                          child:const Text('3', style: TextStyle(color: Colors.white),),
                         ),
-                      ),
-                      customTitle: const Text(
-                        'Dash 3',
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     EasyStep(
@@ -124,12 +111,8 @@ class _MyAppState extends State<MyApp> {
                         borderRadius: BorderRadius.circular(15),
                         child: Opacity(
                           opacity: activeStep >= 3 ? 1 : 0.3,
-                          child: Image.asset('assets/4.png'),
+                          child: const Text('4', style: TextStyle(color: Colors.white),),
                         ),
-                      ),
-                      customTitle: const Text(
-                        'Dash 4',
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     EasyStep(
@@ -137,12 +120,8 @@ class _MyAppState extends State<MyApp> {
                         borderRadius: BorderRadius.circular(15),
                         child: Opacity(
                           opacity: activeStep >= 4 ? 1 : 0.3,
-                          child: Image.asset('assets/5.png'),
+                          child: const Text('5', style: TextStyle(color: Colors.white),),
                         ),
-                      ),
-                      customTitle: const Text(
-                        'Dash 5',
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
@@ -151,11 +130,42 @@ class _MyAppState extends State<MyApp> {
                 SizedBox(
                   height: 200,
                   width: double.infinity,
-                  child: Column(
+                  child: activeStep==0?const  Column(
                     children: [
-                      Container(child: Text(activeStep.toString()),),
-                      const SizedBox(height: 5),
-                      Text('Dash ${activeStep + 1}')
+                      Text('Personal Information'),
+                       SizedBox(height: 5),
+                      Text('Field'),
+                        SizedBox(height: 5),
+                      Text('Field'),
+                        SizedBox(height: 5),
+                      Text('Field'),
+                        SizedBox(height: 5),
+                      Text('Field'),
+
+                    ],
+                  ): activeStep==1?const Column(
+                    children: [
+                      Text('Contact Information'),
+                       SizedBox(height: 5),
+                      Text('Text Field'),
+                        SizedBox(height: 5),
+                      Text('Number Field'),
+                        SizedBox(height: 5),
+                      Text('Field'),
+                        SizedBox(height: 5),
+                      Text('Field'),
+                    ],
+                  ):const Column(
+                    children: [
+                      Text('Payment Information'),
+                       SizedBox(height: 5),
+                      Text('Bank'),
+                        SizedBox(height: 5),
+                      Text('MFS'),
+                        SizedBox(height: 5),
+                      Text('Field'),
+                        SizedBox(height: 5),
+                      Text('Field'),
                     ],
                   ),
                 ),
